@@ -13,12 +13,18 @@
 	}
 </style>
 <script>
-	navigator.geolocation.getCurrentPosition (function (pos)
-	{
-	  var lat = pos.coords.latitude;
-	  var lng = pos.coords.longitude;
-	  alert(lat+" "+lng);
-	});
+
+	alert("Test");
+	try{
+		navigator.geolocation.getCurrentPosition (function (pos)
+		{
+		  var lat = pos.coords.latitude;
+		  var lng = pos.coords.longitude;
+		  alert(lat+" "+lng);
+		});
+	} catch(e){
+		document.write(e.message);	
+	}
 </script>
 </head>
 <body>
