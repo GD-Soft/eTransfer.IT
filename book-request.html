@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Hire with driver</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="google-site-verification" content="m87Piok1FUkb8HGFXt5cphPpr10HiDaQSmCn2m7s3Os" />
+    <meta name="description" content=''/>
+    <meta name="keywords" content="" />
+    <link href="css/site.css" rel="stylesheet" />
+    <link href="css/jquery-ui-1.10.1.custom.css" rel="stylesheet" />
+    <link href="css/jquery.timepicker.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/jquery-ui-1.10.1.custom.js"></script>
+    <script src="js/jquery.timepicker.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/cookielib.js"></script>
+    <script src="js/debugLibrary.js"></script>
+    <script src="js/lang.global.js"></script>
+    <script src="js/booking.aspx.js"></script>
+    <link href="css/jquery.fancybox-1.3.4.css" rel="stylesheet" />
+    <script src="js/jquery.fancybox-1.3.4.js"></script>
+</head>
+<body>
+     <div id="wrapper">
+        <div id="header">
+            <div id="home-icon">
+                <a href="home.html">
+                    <img src="img/home_icon.png" /></a>
+            </div>
+            <div id="logo">
+                <a href="home.html" title="etransfer.it">
+                    <img src="img/logo.png" alt="etransfer.it" /></a>
+            </div>
+            
+        </div>
+<div id="content">
+            <div id="bookspinner"></div>
+            <h1><label id="br-head"></label></h1>
+            <table class="bookingtab">
+                <tr>
+                    <td colspan="2"><b><i>Booking Details</i></b></td>
+                </tr>
+                <tr>
+                    <td><p id="pickup-place"><b>Pickup Area:</b></p></td>
+                    <td>
+                        <span id="pickup-addr"></span>, <span id="pickup-city"></span>, <span id="pickup-area"></span> (<span id="pickup-areacode"></span>)
+                    </td>
+                </tr>
+               
+                <tr>
+                    <td><p id="destination-place"><b>Destination:</b></p></td>
+                    <td>
+                <span id="destination-addr"></span>, <span id="destination-city"></span>, <span id="destination"></span> (<span id="destination-code"></span>)
+           </td>
+                </tr>
+              
+                <tr>
+                    <td><span class="col2" id="n-passenger"><b>N. Passenger</b></span></td>
+                    <td> 
+                        <span id="passengers">
+                        
+                    </span></td>
+                </tr>
+                <tr>
+                    <td><span class="col2" id="n-baggage"><b>N. Baggage</span></b></td>
+                    <td>     
+                        <span id="baggages">
+                        </span>
+                </td>
+                </tr>
+                <tr>
+                    <td><span class="col2" id="pick-date"><b>Pickup Date & Time:</b></span></td>
+                    <td> <span id="date"></span>&nbsp; <span id="time"></span></td>
+                </tr>
+                
+                <tr>
+                    <td><p id="vehicle-type"><b>Vehicle Type:</b></p></td>
+                    <td>
+               <span id="vehicletype"></span>
+                </td>
+                </tr>
+                 <tr>
+                            <td colspan="2"><b><i><label id="br-personnel"></label></i></b></td>
+                        </tr>
+                
+                <tr>
+                    <td class="leftlabel"><label id="br-customer-type"></label><span class="error_msg">*</span></td>
+                    <td><p><input id="rbIndvComp_0" type="radio" name="rbIndvComp" value="INDIVIDUAL" checked="checked" /><label id="br-indiv" for="rbIndvComp_0"></label></p>
+                        <p><input id="rbIndvComp_1" type="radio" name="rbIndvComp" value="COMPANY" /><label id="br-company" for="rbIndvComp_1"></label></p></td>
+                </tr>
+                <tr>
+                    <td class="leftlabel" id="lblSurname"><label id="br-surname"></label><span class="error_msg">*</span></td>
+                    <td><input name="txtSurname" type="text" id="txtSurname" /></td>
+                </tr>
+                 <tr>
+                    <td class="leftlabel" id="lblName"><label id="br-name"></label><span class="error_msg">*</span></td>
+                    <td><input name="txtName" type="text" id="txtName" /></td>
+                </tr>
+                 <tr>
+                    <td class="leftlabel"><label id="br-address"></label><span class="error_msg">*</span></td>
+                    <td><textarea name="txtAddress" rows="2" cols="20" id="txtAddress">
+</textarea></td>
+                </tr>
+                 <tr>
+                    <td class="leftlabel"><label id="br-email"></label><span class="error_msg">*</span></td>
+                    <td><input name="txtEmail" type="text" id="txtEmail" /></td>
+                </tr>
+                 <tr>
+                    <td class="leftlabel"><label id="br-phone"></label><span class="error_msg">*</span></td>
+                    <td><input name="txtPhone" type="text" id="txtPhone" /></td>
+                </tr>
+                <tr>
+                    <td class="leftlabel"><label id="br-zip"></label></td>
+                    <td><input name="txtZip" type="text" id="txtZip" /></td>
+                </tr>
+                <tr>
+                    <td class="leftlabel"><label id="br-country"></label></td>
+                    <td><span class="newpackageddl"><select name="ddlCountry" id="ddlCountry">
+
+</select></span></td>
+                </tr>
+                 <tr>
+                            <td colspan="2"><b><i><label id="br-service-details"></label></i></b></td>
+                        </tr>
+                <tr>
+                    <td class="leftlabel"><label id="br-select-service"></label><span class="error_msg">*</span></td>
+                    <td>
+                        <span class="newpackageddl">
+                            <select name="ddlServiceType" id="ddlServiceType">
+
+</select>
+                            </span></td>
+                </tr>
+                 <tr>
+                    <td class="leftlabel"><label id="br-air-transfer"></label></td>
+                    <td>
+                        <span id="rdAirport"><input id="rdAirport_0" type="radio" name="rdAirport" value="Yes" checked="checked" />
+                            <label id="br-yes" for="rdAirport_0"></label>
+                            <input id="rdAirport_1" type="radio" name="rdAirport" value="No" checked="checked" />
+                            <label id="br-no" for="rdAirport_1"></label></span>
+                    </td>
+                </tr>
+                <tr>
+                    
+                    <td colspan="2">
+                    <table style="width:100%; display:none;" id="tblAirport">
+                        <tr>
+                            <td colspan="2"><b><i><label id="br-is-air-transfer"></label></i></b></td>
+                        </tr>
+                        <tr>
+                            <td class="leftlabel"><label id="br-air-type"></label></td>
+                    <td>
+                       <span class="newpackageddl"> <select name="ddlType" id="ddlType">
+	<option  id="br-arrival" value="Arrival"></option>
+	<option id="br-departure" value="Departure"></option>
+
+</select></span>
+                    </td>
+                        </tr>
+                         <tr>
+                    <td class="leftlabel"><label id="br-flight-no"></label></td>
+                    <td><input name="txtFlightNo" type="text" id="txtFlightNo" /></td>
+                </tr>
+                <tr>
+                    <td class="leftlabel"><label id="br-dep-time"></label></td>
+                    <td>
+                       <input name="txtDepTime" type="text" style="width:100px;" id="txtDepTime" class="small" />
+                    </td>
+                </tr>
+                    </table>
+                 </td>   
+                   
+                    
+                </tr>
+               
+                <tr>
+                    <td colspan="2"><label id="br-add-info"></label>
+</td>
+                   </tr>
+                <tr>
+                    <td colspan="2">
+                        <textarea name="txtAddInfo" rows="2" cols="20" id="txtAddInfo">
+</textarea>
+                    </td>
+                   </tr>
+            <tr>
+                    <td colspan="2">
+                       <b><label id="br-request-mail"></label></b>
+                        </td>
+                   </tr>
+                 <tr>
+                    <td colspan="2">
+                        <div id="loadernew" class="loader"><img alt="loading" src="img/load.gif" /></div>
+                       <div id="selectedPartners"></div>
+                    </td>
+                   </tr>
+                <tr>
+                    <td colspan="2">
+                        <b><i><label id="br-wait-msg"></label></i></b>
+                        </td>
+                    </tr>
+                 <tr>
+                    <td colspan="2">
+                        <input name="btnSendBookingRequest" type="button" id="btnSendBookingRequest" value="Trova un noleggiantore" />
+                    </td>
+                   </tr>
+            </table>
+          </div>
+         </div>
+    <script>
+        $(document).ready(function () {
+            
+            $('.fancy-partner').live('mouseenter', function (e) {
+                $('.fancy-partner').fancybox({
+                    'width': 250,
+                    'height': 600,
+                    'left': 5,
+                    'top':5,
+                    'autoScale': false,
+                    'transitionIn': 'none',
+                    'transitionOut': 'none',
+                    'type': 'iframe',
+                    'onComplete': function () {
+                        $("#fancybox-wrap").css({ 'left':'-10px', 'bottom': 'auto' });
+                    }
+                });
+                e.preventDefault();
+            });
+        });
+			</script>
+</body>
+</html>
