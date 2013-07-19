@@ -107,6 +107,8 @@ function setRemoteRequest() {
 //------------------------------------------------------------------------------
 
 function PopulatePartnersList(response) {
+    
+
     var strBookPartners = '';
     if (window.localStorage.getItem("PartnerIds") == null)
         strBookPartners = '';
@@ -118,12 +120,18 @@ function PopulatePartnersList(response) {
 
         //$('#searchtop').fadeIn();
         //$('#filterpane').fadeIn();
-        for (var partner in partners) {
-            var selectedPartner = partners[partner].partner_id;
-            if (strBookPartners.indexOf(selectedPartner + "|") == -1)
-                strBookPartners = strBookPartners + selectedPartner + "|";
+        var fromarea = '';
+        if (window.localStorage.getItem("from_area") != null) {
+            fromarea = window.localStorage.getItem("from_area");
         }
-        window.localStorage.setItem("PartnerIds", strBookPartners);
+        else {
+            for (var partner in partners) {
+                var selectedPartner = partners[partner].partner_id;
+                if (strBookPartners.indexOf(selectedPartner + "|") == -1)
+                    strBookPartners = strBookPartners + selectedPartner + "|";
+            }
+            window.localStorage.setItem("PartnerIds", strBookPartners);
+        }
         window.location.href = 'book-request.html';
 
         //    var xpscore = partners[partner].etransfer_xpscore;
@@ -168,14 +176,16 @@ function PopulatePartnersList(response) {
 }
 function PopulateAreaCodeList(reponse) {
     if (reponse.status_code == "+Ok") {
+        if (window.localStorage.getItem("from_area") != null) {
+            $('#hdnSourceArea').val(window.localStorage.getItem("from_area"));
+        }
         PopulateAreaCode(eval(reponse.obj), $('#ddlAreaSource'), $('#hdnSourceArea').val());
         PopulateAreaCode(eval(reponse.obj), $('#ddlAreaDestination'), $('#hdnDestArea').val());
-
         if ($('#hdnSourceArea').val() != '')
             callWS("get_city_list_JS",
                    "language=" + etransfer_language + "&order_by=&nation=&partner_id=&area_id=" + $('#hdnSourceArea').val(),
                    "PopulateCityListSource");
-
+      
         if ($('#hdnDestArea').val() != '')
             callWS("get_city_list_JS",
                    "language=" + etransfer_language + "&order_by=&nation=&partner_id=&area_id=" + $('#hdnDestArea').val(),
@@ -289,11 +299,12 @@ function doPartnerSearch() {
         //location.hash = "#searchtop"
         $('#spinner').fadeIn();
         $('#spinner').html('<p><img src="img/loading_animation.gif"/></p> <p>' + lang[etransfer_language]["res_msg_loading"] + '</p>');
-        
-        callWS("get_partner_list_JS",
-              "language=" + etransfer_language + "&order_by=&nation_id=&area_ids_or_names=" + $('#ddlAreaSource').val() + "&spoken_languages=" + currentFilter.sel_languages + "&smart_ncc_certified=" + currentFilter.ncc_ready + "&ncc_online_certified=" + currentFilter.nccol_ready + "&sms_ready=" + currentFilter.sms_ready + "&min_score=" + currentFilter.min_rating + "&topList=0",
-              "PopulatePartnersList");
-    }
+       
+            callWS("get_partner_list_JS",
+                  "language=" + etransfer_language + "&order_by=&nation_id=&area_ids_or_names=" + $('#ddlAreaSource').val() + "&spoken_languages=" + currentFilter.sel_languages + "&smart_ncc_certified=" + currentFilter.ncc_ready + "&ncc_online_certified=" + currentFilter.nccol_ready + "&sms_ready=" + currentFilter.sms_ready + "&min_score=" + currentFilter.min_rating + "&topList=0",
+                  "PopulatePartnersList");
+        }
+    
 }
 
 function LoadLabels() {
@@ -412,6 +423,8 @@ function PostBack() {
     $('#ddlAreaSource').change(function () {
         $('#hdnSourceArea').val($('#ddlAreaSource').val());
         //alert($('#ddlAreaSource').find("option:selected").text());
+        if (window.localStorage.getItem("from_area")!=null)
+            window.localStorage.removeItem("from_area");
         $('#hdnSourceCity').val('');
         $('#txtSourceAddress').val("");
         var input = document.getElementById('txtSourceAddress');

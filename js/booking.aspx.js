@@ -170,12 +170,12 @@ function closeImage(control, partnerid) {
         $('#loadernew').fadeOut();
 }
 function GetSelectedPartner(response) {
-
+    
     if (response.status_code == "+Ok") {
         var partners = eval(response.obj);
         if (partners.length > 0) {
             for (var partner in partners) {
-                innerselHtml += "<div class='selpartners' id='book_partner" + partners[partner].partner_id + "'><a href='partner.html?id=" + partners[partner].partner_id + "' class='fancy-partner'><span class='seltext'>" + partners[partner].partner_firstname.substr(0, 25) + "</span></a><span><a  onclick='return closeImage(book_partner" + partners[partner].partner_id + "," + partners[partner].partner_id + ");'><img src='img/cancel.png'/></a></span></div>";
+                innerselHtml += "<div class='selpartners' id='book_partner" + partners[partner].partner_id + "'><a href='partners.html?id=" + partners[partner].partner_id + "' class='fancy-partner'><span class='seltext'>" + partners[partner].partner_firstname.substr(0, 25) + "</span></a><span><a  onclick='return closeImage(book_partner" + partners[partner].partner_id + "," + partners[partner].partner_id + ");'><img src='img/cancel.png'/></a></span></div>";
             }
         }
     }

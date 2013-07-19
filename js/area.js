@@ -1,9 +1,7 @@
 ﻿var area_name=''
-function LoadAreaList(response)
-{
+function LoadAreaList(response) {
     var innerHtml = '';
-    if (response.status_code == "+Ok")
-    {
+    if (response.status_code == "+Ok") {
         var areas = eval(response.obj);
         innerHtml = "<ul class='drivers'>";
         for (var area in areas) {
@@ -15,8 +13,21 @@ function LoadAreaList(response)
     }
     $('.loader').fadeOut();
 }
+function LoadArea(response) {
+    var area_name = encodeURIComponent(getParameterByName('name'));
+    if (response.status_code == "+Ok") {
+        var areas = eval(response.obj);
+        for (var area in areas) {
+            if (areas[area].area_desc == area_name)
+                window.localStorage.setItem("from_area", areas[area].area_code);
+        }
+        window.location.href = 'hire-driver.html';
+        return false;
+    }
+}
 function setnewquotation(control, selectedPartner) {
-    var strPartners = window.localStorage.getItem("PartnerIds");
+    var strPartners = '';// window.localStorage.getItem("PartnerIds");
+    window.localStorage.setItem("PartnerIds", null);
     if (strPartners == null)
         strPartners = '';
     // $('#hdnSelectedPartners').val(strPartners);
@@ -43,7 +54,10 @@ function LoadLabels(area_name) {
     $("#btnEnquire").html(lang[etransfer_language]["res_global_link_enquire_text"]);
     $("#btnEnquire1").html(lang[etransfer_language]["res_global_link_enquire_text"]);
     $('[id^="chkSearch"]').click(function () {
-        var strPartners = window.localStorage.getItem("PartnerIds");
+        //var strPartners = window.localStorage.getItem("PartnerIds");
+        window.localStorage.setItem("PartnerIds", null);
+
+        var strPartners = '';
         if (strPartners == null)
             strPartners = '';
         $('.searchchkbox').attr('checked', this.checked);
@@ -65,8 +79,10 @@ function LoadLabels(area_name) {
     $('#btnEnquire1').click(function () {
         if (window.localStorage.getItem("PartnerIds") != null) {
             //alert(window.localStorage.getItem("PartnerIds"));
-            window.location.href = 'book-request.html';
-            return false;
+            callWS("get_area_list_JS",
+                         "language=" + etransfer_language + "&order_by=&nation=&partner_id_or_name=",
+                         "LoadArea");
+            
 
         }
         else {
@@ -76,8 +92,9 @@ function LoadLabels(area_name) {
     $('#btnEnquire').click(function () {
         if (window.localStorage.getItem("PartnerIds") != null) {
             //alert(window.localStorage.getItem("PartnerIds"));
-            window.location.href = 'book-request.html';
-            return false;
+            callWS("get_area_list_JS",
+                           "language=" + etransfer_language + "&order_by=&nation=&partner_id_or_name=",
+                           "LoadArea");
 
         }
         else {

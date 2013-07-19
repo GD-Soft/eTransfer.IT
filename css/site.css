@@ -173,20 +173,26 @@ top:1px;
     text-align:center;
     border-radius:0px 0px 5px 5px;
 }
-#home-icon {
+#back-icon {
     width:10%;
     float:left;
     text-align:left;
     margin-left:2%;
     margin-top:3px;
 }
-    
+#home-icon {
+    width:10%;
+    float:right;
+    text-align:right;
+    margin-right:2%;
+    margin-top:3px;
+}   
     #home-icon img {
         width:30px;
         margin-top:-5px;
     }
 #logo {
-    width:88%;
+    width:76%;
     float:left;
     
 }

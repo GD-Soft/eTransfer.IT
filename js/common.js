@@ -21,7 +21,11 @@
     else
         window.location.href = 'error.html';
 }
-
+$(document).ready(function () {
+    $('#back-icon a').click(function () {
+        window.history.go(-1);
+    });
+});
 //function callWS(method, request_params, cbFunction, cbObject) {
 //    if (cbObject == null) cbObject = "";
 //    else cbObject = JSON.stringify(cbObject, null, 2);

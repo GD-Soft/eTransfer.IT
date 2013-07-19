@@ -16,10 +16,18 @@
     <script src="js/cookielib.js"></script>
     <script src="js/debugLibrary.js"></script>
     <script src="js/lang.global.js"></script>
+    <script src="js/partners.aspx.js"></script>
+    <script>
+        $(document).ready(function () {
+            var partnerid = encodeURIComponent(getParameterByName('id'));
+            $('.loader').fadeIn();
+            getpartner(partnerid);
+        });
+    </script>
 </head>
 <body>
     <div id="wrapper">
-      <div id="header">
+       <div id="header">
             <div id="back-icon">
                 <a href="#">
                     <img src="img/back_icon.png" /></a>
@@ -35,14 +43,11 @@
             
         </div>
         <div id="content">
-            
+            <div id="loaderall" class="loader">
+                    <img alt="Loading" src="img/loader.gif" /></div>
+
              <div id="partnerdiv">
-                 <ul class="drivers">
-                     <li class="no-bg">
-                         <a>Thank you</a>
-                     </li>
-                 </ul>
-                
+
              </div>
             </div>
         </div>
